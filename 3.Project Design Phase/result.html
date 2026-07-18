@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>HDI Prediction Result</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="result-page">
+
+    <nav class="result-nav">
+
+        <div>
+            <h2>HDI Predictor</h2>
+            <p>Human Development Analysis using ML</p>
+        </div>
+
+        <a href="/">New Prediction</a>
+
+    </nav>
+
+
+    <div class="success-message">
+        ✓ Prediction Completed Successfully!
+    </div>
+
+
+    <section class="result-dashboard">
+
+        <!-- HDI SCORE -->
+
+        <div class="dashboard-card">
+
+            <h2>◉ HDI Score</h2>
+
+            <div class="circle-score"
+                 style="--score: {{ percentage }}">
+
+                <div class="circle-inner">
+
+                    <strong>{{ prediction }}</strong>
+
+                    <span>out of 1.000</span>
+
+                </div>
+
+            </div>
+
+            <h3>{{ category }}</h3>
+
+        </div>
+
+
+        <!-- CATEGORY -->
+
+        <div class="dashboard-card category-card">
+
+            <h2>◎ Development Category</h2>
+
+            <div class="category-icon">
+                {% if prediction >= 0.800 %}
+                    ★
+                {% elif prediction >= 0.700 %}
+                    ↑
+                {% elif prediction >= 0.550 %}
+                    ◆
+                {% else %}
+                    ○
+                {% endif %}
+            </div>
+
+            <h3>{{ category }}</h3>
+
+            <p>
+                The predicted Human Development Index
+                for the entered indicators is
+                <strong>{{ prediction }}</strong>.
+            </p>
+
+        </div>
+
+
+        <!-- HDI SCALE -->
+
+        <div class="dashboard-card">
+
+            <h2>↗ HDI Scale Analysis</h2>
+
+            <div class="scale-item">
+                <div>
+                    <span>Low Development</span>
+                    <span>Below 0.550</span>
+                </div>
+                <div class="scale-bar">
+                    <div style="width: 35%"></div>
+                </div>
+            </div>
+
+
+            <div class="scale-item">
+                <div>
+                    <span>Medium Development</span>
+                    <span>0.550 – 0.699</span>
+                </div>
+                <div class="scale-bar">
+                    <div style="width: 55%"></div>
+                </div>
+            </div>
+
+
+            <div class="scale-item">
+                <div>
+                    <span>High Development</span>
+                    <span>0.700 – 0.799</span>
+                </div>
+                <div class="scale-bar">
+                    <div style="width: 75%"></div>
+                </div>
+            </div>
+
+
+            <div class="scale-item">
+                <div>
+                    <span>Very High Development</span>
+                    <span>0.800+</span>
+                </div>
+                <div class="scale-bar">
+                    <div style="width: 95%"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FACTORS -->
+
+    <section class="factors-section">
+
+        <h2>◔ Development Factors Analysis</h2>
+
+        <div class="factor-grid">
+
+            <div class="factor-card">
+                <span>Life Expectancy</span>
+                <strong>{{ life }} years</strong>
+            </div>
+
+
+            <div class="factor-card">
+                <span>Expected Years of Schooling</span>
+                <strong>{{ expected }} years</strong>
+            </div>
+
+
+            <div class="factor-card">
+                <span>Mean Years of Schooling</span>
+                <strong>{{ mean }} years</strong>
+            </div>
+
+
+            <div class="factor-card">
+                <span>GNI Per Capita</span>
+                <strong>${{ income }}</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <div class="result-actions">
+
+        <a href="/" class="primary-action">
+            Make New Prediction
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

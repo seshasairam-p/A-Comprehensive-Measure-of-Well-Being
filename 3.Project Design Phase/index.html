@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>HDI Predictor</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="page">
+
+    <header class="hero">
+
+        <div>
+            <p class="eyebrow">
+                MACHINE LEARNING PROJECT
+            </p>
+
+            <h1>
+                Human Development<br>
+                Index Predictor
+            </h1>
+
+            <p class="subtitle">
+                Estimate the Human Development Index using
+                health, education and income indicators.
+            </p>
+        </div>
+
+
+        <div class="model-status">
+            <span class="status-dot"></span>
+            ML Model Ready
+        </div>
+
+    </header>
+
+
+    <main class="dashboard">
+
+        <!-- INPUT CARD -->
+
+        <section class="form-card">
+
+            <div class="section-title">
+
+                <div class="number">
+                    01
+                </div>
+
+                <div>
+                    <h2>Development Indicators</h2>
+
+                    <p>
+                        Enter the required development values below.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <form method="POST" action="/predict">
+
+                <div class="form-grid">
+
+
+                    <!-- LIFE EXPECTANCY -->
+
+                    <div class="input-group">
+
+                        <label for="life">
+                            Life Expectancy at Birth
+                        </label>
+
+                        <div class="input-box">
+
+                            <input
+                                id="life"
+                                type="number"
+                                step="any"
+                                min="0"
+                                max="120"
+                                name="life"
+                                placeholder="Example: 72"
+                                required>
+
+                            <span>Years</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EXPECTED SCHOOLING -->
+
+                    <div class="input-group">
+
+                        <label for="expected">
+                            Expected Years of Schooling
+                        </label>
+
+                        <div class="input-box">
+
+                            <input
+                                id="expected"
+                                type="number"
+                                step="any"
+                                min="0"
+                                max="30"
+                                name="expected"
+                                placeholder="Example: 13"
+                                required>
+
+                            <span>Years</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MEAN SCHOOLING -->
+
+                    <div class="input-group">
+
+                        <label for="mean">
+                            Mean Years of Schooling
+                        </label>
+
+                        <div class="input-box">
+
+                            <input
+                                id="mean"
+                                type="number"
+                                step="any"
+                                min="0"
+                                max="30"
+                                name="mean"
+                                placeholder="Example: 8"
+                                required>
+
+                            <span>Years</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- GNI -->
+
+                    <div class="input-group">
+
+                        <label for="income">
+                            Gross National Income Per Capita
+                        </label>
+
+                        <div class="input-box">
+
+                            <input
+                                id="income"
+                                type="number"
+                                step="any"
+                                min="0"
+                                name="income"
+                                placeholder="Example: 15000"
+                                required>
+
+                            <span>USD</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <button type="submit">
+
+                    <span>
+                        Predict Human Development Index
+                    </span>
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- INFORMATION CARD -->
+
+        <aside class="info-card">
+
+            <div class="section-title">
+
+                <div class="number purple">
+                    02
+                </div>
+
+                <div>
+                    <h2>HDI Analysis</h2>
+
+                    <p>
+                        Machine learning based prediction.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="analysis-content">
+
+                <div class="analysis-icon">
+                    ↗
+                </div>
+
+                <h2>
+                    Ready to Predict
+                </h2>
+
+                <p>
+                    Enter the development indicators and click
+                    the prediction button to generate the HDI
+                    score and development category.
+                </p>
+
+
+                <div class="feature-list">
+
+                    <div>
+                        <span>✓</span>
+                        Machine Learning Prediction
+                    </div>
+
+                    <div>
+                        <span>✓</span>
+                        HDI Development Category
+                    </div>
+
+                    <div>
+                        <span>✓</span>
+                        Development Factors Analysis
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </main>
+
+
+    <!-- HDI INFORMATION -->
+
+    <section class="hdi-info">
+
+        <div class="info-title">
+
+            <p>HDI CLASSIFICATION SCALE</p>
+
+            <h2>
+                Understanding Human Development Levels
+            </h2>
+
+        </div>
+
+
+        <div class="level-grid">
+
+            <div class="level-card low">
+
+                <div class="level-icon">
+                    01
+                </div>
+
+                <h3>Low Development</h3>
+
+                <strong>
+                    Below 0.550
+                </strong>
+
+            </div>
+
+
+            <div class="level-card medium">
+
+                <div class="level-icon">
+                    02
+                </div>
+
+                <h3>Medium Development</h3>
+
+                <strong>
+                    0.550 – 0.699
+                </strong>
+
+            </div>
+
+
+            <div class="level-card high">
+
+                <div class="level-icon">
+                    03
+                </div>
+
+                <h3>High Development</h3>
+
+                <strong>
+                    0.700 – 0.799
+                </strong>
+
+            </div>
+
+
+            <div class="level-card very-high">
+
+                <div class="level-icon">
+                    04
+                </div>
+
+                <h3>Very High Development</h3>
+
+                <strong>
+                    0.800+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <span>
+            HDI Predictor
+        </span>
+
+        <span>
+            Machine Learning • Linear Regression • Flask
+        </span>
+
+    </footer>
+
+</div>
+
+</body>
+</html>
